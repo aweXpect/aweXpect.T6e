@@ -24,7 +24,7 @@ Template for extension projects for [aweXpect](https://github.com/aweXpect/aweXp
     - Go to the project directory
     - Type `sn -k strongname.snk` to create a new key pair
     - Type `sn -p strongname.snk publicKey.snk` to extract the public key
-    - Type `sn -tp publicKey.snk` to display the public key and put it in "Directory.Build.props"
+    - Type `sn -tp publicKey.snk` to display the public key, put it in "Directory.Build.props" and enable the corresponding `PropertyGroup`
     - Delete the "publicKey.snk" file
 - Replace "T6e" with your suffix both in file names and in contents.
 - Adapt the copyright and project information in Source/Directory.Build.props
