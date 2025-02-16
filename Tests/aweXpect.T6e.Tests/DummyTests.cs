@@ -3,10 +3,29 @@
 public sealed class DummyTests
 {
 	[Fact]
-	public async Task MyDummyTest()
+	public async Task WhenPathIsAbsolute_ShouldSucceed()
 	{
-		bool sut = true;
+		string path = "/foo";
 
-		await That(sut).IsTrue();
+		async Task Act()
+			=> await That(path).IsAbsolutePath();
+
+		await That(Act).DoesNotThrow();
+	}
+
+	[Fact]
+	public async Task WhenPathIsRelative_ShouldFail()
+	{
+		string path = "foo";
+
+		async Task Act()
+			=> await That(path).IsAbsolutePath();
+
+		await That(Act).ThrowsException()
+			.WithMessage("""
+			             Expected that path
+			             is an absolute path,
+			             but it was "foo"
+			             """);
 	}
 }
