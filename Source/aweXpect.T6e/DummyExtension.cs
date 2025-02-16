@@ -6,6 +6,9 @@ using aweXpect.Results;
 
 namespace aweXpect;
 
+/// <summary>
+///     See https://awexpect.com/docs/extensions/write-extensions
+/// </summary>
 public static class DummyExtensions
 {
 	/// <summary>
@@ -13,7 +16,7 @@ public static class DummyExtensions
 	/// </summary>
 	public static AndOrResult<string, IThat<string>> IsAbsolutePath(
 		this IThat<string> subject)
-		=> new(subject.ThatIs().ExpectationBuilder.AddConstraint((it, grammar)
+		=> new(subject.ThatIs().ExpectationBuilder.AddConstraint((it, _)
 				=> new IsAbsolutePathConstraint(it)),
 			subject);
 
