@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using aweXpect.Core;
 
 namespace aweXpect.Helpers;
 
+[ExcludeFromCodeCoverage]
 internal static class ThatExtensions
 {
 	public static IThatIs<T> ThatIs<T>(this IThat<T> subject)
