@@ -12,9 +12,12 @@ Template for extension projects for [aweXpect](https://github.com/aweXpect/aweXp
 - Enable Sonarcloud analysis
 	- Create the project at [sonarcloud](https://sonarcloud.io/projects/create)
 	- Set "New Code" definition to "Previous version"
-	- Add the `SONAR_TOKEN` secret as repository secret
+	- Add the `SONAR_TOKEN` as repository secret
 	- Set the long-lived branch pattern to `(main|release/.*)`
 	- Change the Quality Profile for C# and the Quality Gate to "aweXpect way"
+- Enable Stryker Mutator
+	- Enable the repository in the [Stryker Mutator Dashboard](https://dashboard.stryker-mutator.io/repos/aweXpect)
+	- Add the API Key as `STRYKER_DASHBOARD_API_KEY` repository secret
 - Take over settings from T6e project
 	- General Settings
 	- Protect the `main` branch
