@@ -42,7 +42,7 @@ partial class Build
 			Dictionary<Project, Project[]> projects = new()
 			{
 				{
-					Solution.aweXpect_T6e, [Solution.Tests.aweXpect_T6e_Tests]
+					Solution.aweXpect_T6e, [Solution.Tests.aweXpect_T6e_Tests,]
 				},
 			};
 
