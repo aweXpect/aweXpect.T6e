@@ -45,9 +45,6 @@ public static class DummyExtensions
 			=> stringBuilder.Append("is no negated path");
 
 		protected override void AppendNegatedResult(StringBuilder stringBuilder, string? indentation = null)
-		{
-			stringBuilder.Append(it).Append(" was ");
-			Formatter.Format(stringBuilder, Actual);
-		}
+			=> AppendNormalResult(stringBuilder, indentation);
 	}
 }
