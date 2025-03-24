@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Text;
 using aweXpect.Core;
 using aweXpect.Core.Constraints;
 using aweXpect.Helpers;
@@ -16,23 +17,37 @@ public static class DummyExtensions
 	/// </summary>
 	public static AndOrResult<string, IThat<string>> IsAbsolutePath(
 		this IThat<string> subject)
-		=> new(subject.ThatIs().ExpectationBuilder.AddConstraint((it, _)
-				=> new IsAbsolutePathConstraint(it)),
+		=> new(subject.Get().ExpectationBuilder.AddConstraint((it, grammars)
+				=> new IsAbsolutePathConstraint(it, grammars)),
 			subject);
 
-	private readonly struct IsAbsolutePathConstraint(string it) : IValueConstraint<string>
+	private sealed class IsAbsolutePathConstraint(string it, ExpectationGrammars grammars)
+		: ConstraintResult.WithValue<string>(grammars),
+			IValueConstraint<string>
 	{
 		public ConstraintResult IsMetBy(string actual)
 		{
-			if (Path.IsPathRooted(actual))
-			{
-				return new ConstraintResult.Success<string>(actual, ToString());
-			}
-
-			return new ConstraintResult.Failure(ToString(),
-				$"{it} was {Formatter.Format(actual)}");
+			Actual = actual;
+			Outcome = Path.IsPathRooted(actual) ? Outcome.Success : Outcome.Failure;
+			return this;
 		}
 
-		public override string ToString() => "is an absolute path";
+		protected override void AppendNormalExpectation(StringBuilder stringBuilder, string? indentation = null)
+			=> stringBuilder.Append("is an absolute path");
+
+		protected override void AppendNormalResult(StringBuilder stringBuilder, string? indentation = null)
+		{
+			stringBuilder.Append(it).Append(" was ");
+			Formatter.Format(stringBuilder, Actual);
+		}
+
+		protected override void AppendNegatedExpectation(StringBuilder stringBuilder, string? indentation = null)
+			=> stringBuilder.Append("is no negated path");
+
+		protected override void AppendNegatedResult(StringBuilder stringBuilder, string? indentation = null)
+		{
+			stringBuilder.Append(it).Append(" was ");
+			Formatter.Format(stringBuilder, Actual);
+		}
 	}
 }
