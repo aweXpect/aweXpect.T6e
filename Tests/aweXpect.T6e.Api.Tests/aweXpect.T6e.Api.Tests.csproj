@@ -9,7 +9,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="aweXpect.Core" />
 		<PackageReference Include="PublicApiGenerator" />
 	</ItemGroup>
 
