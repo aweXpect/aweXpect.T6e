@@ -5,14 +5,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Source\aweXpect.T6e\aweXpect.T6e.csproj"/>
+		<ProjectReference Include="..\..\Source\aweXpect.T6e\aweXpect.T6e.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="PublicApiGenerator"/>
+		<PackageReference Include="PublicApiGenerator" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Expected\"/>
+		<Folder Include="Expected\" />
 	</ItemGroup>
 </Project>
