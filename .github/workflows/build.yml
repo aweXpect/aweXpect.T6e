@@ -192,7 +192,7 @@ jobs:
                     done
                     for entry in Artifacts/Packages/*.nupkg
                     do
-                       push $entry --source https://api.nuget.org/v3/index.json --api-key "${{secrets.NUGET_API_KEY}}" --skip-duplicate
+                       dotnet nuget push $entry --source https://api.nuget.org/v3/index.json --api-key "${{secrets.NUGET_API_KEY}}" --skip-duplicate
                     done
             -   name: Check pre-release
                 id: check-pre-release
